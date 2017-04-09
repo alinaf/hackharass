@@ -139,6 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer1a.selectedHandler = {
             [unowned self] in
             
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
+            
             self.countHigh += 1
             self.questionOne.state = .hidden
             self.answer1a.state = .hidden
@@ -150,6 +154,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer1b.selectedHandler = {
             [unowned self] in
             
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
+            
             self.countModerate += 1
             self.questionOne.state = .hidden
             self.answer1a.state = .hidden
@@ -160,6 +168,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /*Setup answer1c selection handler*/
         answer1c.selectedHandler = {
             [unowned self] in
+            
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
             
             self.countMinimal += 1
             self.questionOne.state = .hidden
@@ -174,6 +186,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer2a.selectedHandler = {
             [unowned self] in
             
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
+            
             self.countHigh += 1
             self.questionTwo.state = .hidden
             self.answer2a.state = .hidden
@@ -185,6 +201,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer2b.selectedHandler = {
             [unowned self] in
             
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
+            
             self.countModerate += 1
             self.questionTwo.state = .hidden
             self.answer2a.state = .hidden
@@ -195,6 +215,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /*Setup answer2c selection handler*/
         answer2c.selectedHandler = {
             [unowned self] in
+            
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
             
             self.countMinimal += 1
             self.questionTwo.state = .hidden
@@ -208,6 +232,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /*Setup answer3a selection handler*/
         answer3a.selectedHandler = {
             [unowned self] in
+            
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
             
             self.countHigh += 1
             self.questionThree.state = .hidden
@@ -229,6 +257,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /*Setup answer3b selection handler*/
         answer3b.selectedHandler = {
             [unowned self] in
+            
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
             
             self.countModerate += 1
             self.questionThree.state = .hidden
@@ -252,6 +284,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /*Setup answer3c selection handler*/
         answer3c.selectedHandler = {
             [unowned self] in
+            
+            /* Play SFX */
+            let answerSFX = SKAction.playSoundFileNamed("sfx_goal", waitForCompletion: false)
+            self.run(answerSFX)
             
             self.countMinimal += 1
             self.questionThree.state = .hidden
