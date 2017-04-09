@@ -495,7 +495,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameState = .gamePause
             
             /* Show question one */
-            questionOne.state = .active
+            questionOne.state = .disabled
             answer1a.state = .active
             answer1b.state = .active
             answer1c.state = .active
@@ -505,7 +505,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameState = .gamePause
             
             /* Show question two */
-            questionTwo.state = .active
+            questionTwo.state = .disabled
             answer2a.state = .active
             answer2b.state = .active
             answer2c.state = .active
@@ -516,7 +516,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameState = .gamePause
             
             /* Show question three */
-            questionThree.state = .active
+            questionThree.state = .disabled
             answer3a.state = .active
             answer3b.state = .active
             answer3c.state = .active
