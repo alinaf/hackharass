@@ -9,7 +9,7 @@
 import SpriteKit
 
 enum GameSceneState {
-    case active, gameOver
+    case active, gamePause
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -112,6 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
             self.answer1c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer1b selection handler*/
         answer1b.selectedHandler = {
@@ -122,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
             self.answer1c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer1c selection handler*/
         answer1c.selectedHandler = {
@@ -132,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
             self.answer1c.state = .hidden
+            self.gameState = .active
         }
         
         
@@ -144,6 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
             self.answer2c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer2b selection handler*/
         answer2b.selectedHandler = {
@@ -154,6 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
             self.answer2c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer2c selection handler*/
         answer2c.selectedHandler = {
@@ -164,6 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
             self.answer2c.state = .hidden
+            self.gameState = .active
         }
         
         
@@ -176,6 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer3b selection handler*/
         answer3b.selectedHandler = {
@@ -186,6 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
+            self.gameState = .active
         }
         /*Setup answer3c selection handler*/
         answer3c.selectedHandler = {
@@ -196,6 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
+            self.gameState = .active
         }
         
         
@@ -375,6 +384,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* If 1st house hit */
         if points == 2 {
+            gameState = .gamePause
+            
             /* Show question one */
             questionOne.state = .active
             answer1a.state = .active
@@ -383,6 +394,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if points == 1 {
+            gameState = .gamePause
+            
             /* Show question two */
             questionTwo.state = .active
             answer2a.state = .active
@@ -392,6 +405,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* If 3rd house hit */
         if points == 0 {
+            gameState = .gamePause
             
             /* Show question three */
             questionThree.state = .active
@@ -400,8 +414,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             answer3c.state = .hidden
             
             
-            /* Change game state to game over */
-            gameState = .gameOver
+            /* Change game state to game paused */
+            gameState = .gamePause
             
             /* Stop any new angular velocity being applied */
             hero.physicsBody?.allowsRotation = false
