@@ -48,6 +48,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Game management */
     var gameState: GameSceneState = .active
     var points = 3
+    var countHigh = 0
+    var countModerate = 0
+    var countMinimal = 0
     
     override func didMove(to view: SKView) {
         /* Setup your scene here */
@@ -104,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer1a.selectedHandler = {
             [unowned self] in
             
+            self.countHigh += 1
             self.questionOne.state = .hidden
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
@@ -113,6 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer1b.selectedHandler = {
             [unowned self] in
             
+            self.countModerate += 1
             self.questionOne.state = .hidden
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
@@ -122,6 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer1c.selectedHandler = {
             [unowned self] in
             
+            self.countMinimal += 1
             self.questionOne.state = .hidden
             self.answer1a.state = .hidden
             self.answer1b.state = .hidden
@@ -133,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer2a.selectedHandler = {
             [unowned self] in
             
+            self.countHigh += 1
             self.questionTwo.state = .hidden
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
@@ -142,6 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer2b.selectedHandler = {
             [unowned self] in
             
+            self.countModerate += 1
             self.questionTwo.state = .hidden
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
@@ -151,6 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer2c.selectedHandler = {
             [unowned self] in
             
+            self.countMinimal += 1
             self.questionTwo.state = .hidden
             self.answer2a.state = .hidden
             self.answer2b.state = .hidden
@@ -162,6 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer3a.selectedHandler = {
             [unowned self] in
             
+            self.countHigh += 1
             self.questionThree.state = .hidden
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
@@ -171,6 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer3b.selectedHandler = {
             [unowned self] in
             
+            self.countModerate += 1
             self.questionThree.state = .hidden
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
@@ -180,6 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer3c.selectedHandler = {
             [unowned self] in
             
+            self.countMinimal += 1
             self.questionThree.state = .hidden
             self.answer3a.state = .hidden
             self.answer3b.state = .hidden
@@ -310,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* Time to add a new obstacle? */
-        if spawnTimer >= 1.5 {
+        if spawnTimer >= 3 {
             
             /* Create a new obstacle reference object using our obstacle resource */
             let resourcePath = Bundle.main.path(forResource: "Obstacle", ofType: "sks")
@@ -413,9 +425,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hero.run(heroDeath)
         
             /* Show final Image */
-            finalHigh.state = .active
-            finalModerate.state = .active
-            finalMinimal.state = .active
+            if countHigh > countModerate && countHigh > countMinimal{
+                finalHigh.state = .active
+            }else
+                if countMinimal > countHigh && countMinimal > countModerate{
+                    finalMinimal.state = .active
+                }else{
+                    finalModerate.state = .active
+            }
+
         }
         
         
