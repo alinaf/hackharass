@@ -20,7 +20,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var obstacleLayer: SKNode!
     
     /* UI Connections */
-    var finalImage: MSButtonNode!
     var questionOne: MSButtonNode!
     var answer1a: MSButtonNode!
     var answer1b: MSButtonNode!
@@ -33,6 +32,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var answer3a: MSButtonNode!
     var answer3b: MSButtonNode!
     var answer3c: MSButtonNode!
+    var finalMinimal: MSButtonNode!
+    var finalModerate: MSButtonNode!
+    var finalHigh: MSButtonNode!
     var scoreLabel: SKLabelNode!
     
     /* Timers */
@@ -63,7 +65,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacleLayer = self.childNode(withName: "obstacleLayer")
         
         /* Set UI connections */
-        finalImage = self.childNode(withName: "finalImage") as! MSButtonNode
         questionOne = self.childNode(withName: "questionOne") as! MSButtonNode
         answer1a = self.childNode(withName: "answer1a") as! MSButtonNode
         answer1b = self.childNode(withName: "answer1b") as! MSButtonNode
@@ -76,14 +77,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer3a = self.childNode(withName: "answer3a") as! MSButtonNode
         answer3b = self.childNode(withName: "answer3b") as! MSButtonNode
         answer3c = self.childNode(withName: "answer3c") as! MSButtonNode
+        finalHigh = self.childNode(withName: "finalHigh") as! MSButtonNode
+        finalModerate = self.childNode(withName: "finalModerate") as! MSButtonNode
+        finalMinimal = self.childNode(withName: "finalMinimal") as! MSButtonNode
         scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
         
         /* Setup final image selection handler */
-        finalImage.selectedHandler = {
+        finalHigh.selectedHandler = {
             [unowned self] in
             
+            self.finalHigh.state = .hidden
+        }
+        finalModerate.selectedHandler = {
+            [unowned self] in
             
-            self.finalImage.state = .hidden
+            self.finalModerate.state = .hidden
+        }
+        finalMinimal.selectedHandler = {
+            [unowned self] in
+            
+            self.finalMinimal.state = .hidden
         }
         
         
@@ -174,8 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
-        /* Hide final Image and questions*/
-        finalImage.state = .hidden
+        /* Hide all buttons*/
         questionOne.state = .hidden
         answer1a.state = .hidden
         answer1b.state = .hidden
@@ -188,6 +200,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         answer3a.state = .hidden
         answer3b.state = .hidden
         answer3c.state = .hidden
+        finalHigh.state = .hidden
+        finalModerate.state = .hidden
+        finalMinimal.state = .hidden
         
         /* Reset Score label */
         scoreLabel.text = String(points)
@@ -396,12 +411,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Run action */
             hero.run(heroDeath)
-            
-            
-            
-            
+        
             /* Show final Image */
-            finalImage.state = .active
+            finalHigh.state = .active
+            finalModerate.state = .active
+            finalMinimal.state = .active
         }
         
         
