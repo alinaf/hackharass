@@ -342,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* Clamp rotation */
-        hero.zRotation = hero.zRotation.clamped(CGFloat(-100).degreesToRadians(), CGFloat(-10).degreesToRadians())
+        hero.zRotation = hero.zRotation.clamped(CGFloat(-45).degreesToRadians(), CGFloat(-10).degreesToRadians())
         hero.physicsBody!.angularVelocity = hero.physicsBody!.angularVelocity.clamped(-2, 2)
         
         /* Process world scrolling */
@@ -489,10 +489,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Change game state to game paused */
             gameState = .gamePause
             
-
+            scoreLabel.removeFromParent()
         
         }
-        
         
         
         
