@@ -367,8 +367,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let velocityY = hero.physicsBody?.velocity.dy ?? 0
         
         /* Check and cap vertical velocity */
-        if velocityY > 400 {
-            hero.physicsBody?.velocity.dy = 400
+        if velocityY > 350 {
+            hero.physicsBody?.velocity.dy = 350
         }
         
         /* Apply falling rotation */
@@ -462,22 +462,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Ensure only called while game running */
         if gameState != .active { return }
         
-        /* Hero touches anything, game over */
         
-        /* Get references to bodies involved in collision */
-        let contactA:SKPhysicsBody = contact.bodyA
-        let contactB:SKPhysicsBody = contact.bodyB
-        
-        /* Get references to the physics body parent nodes */
-        let nodeA = contactA.node!
-        let nodeB = contactB.node!
-        
-        /* Did our hero pass through the 'goal'? */
-        if nodeA.name == "goal" || nodeB.name == "goal" {
-            
-            /* We can return now */
-            return
-        }
+
         
         /*collision*/
         
