@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  HoppyBunny
 //
-//  Created by Martin Walsh on 08/02/2016.
+//  Created by us on 08/02/2016.
 //  Copyright (c) 2016 Make School. All rights reserved.
 //
 
@@ -35,6 +35,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var finalMinimal: MSButtonNode!
     var finalModerate: MSButtonNode!
     var finalHigh: MSButtonNode!
+    var feedbackMinimal: MSButtonNode!
+    var feedbackModerate: MSButtonNode!
+    var feedbackHigh: MSButtonNode!
     var scoreLabel: SKLabelNode!
     
     /* Timers */
@@ -51,6 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var countHigh = 0
     var countModerate = 0
     var countMinimal = 0
+    var isHit = false
     
     override func didMove(to view: SKView) {
         /* Setup your scene here */
@@ -83,6 +87,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         finalHigh = self.childNode(withName: "finalHigh") as! MSButtonNode
         finalModerate = self.childNode(withName: "finalModerate") as! MSButtonNode
         finalMinimal = self.childNode(withName: "finalMinimal") as! MSButtonNode
+        feedbackHigh = self.childNode(withName: "feedbackHigh") as! MSButtonNode
+        feedbackModerate = self.childNode(withName: "feedbackModerate") as! MSButtonNode
+        feedbackMinimal = self.childNode(withName: "feedbackMinimal") as! MSButtonNode
         scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
         
         /* Setup final image selection handler */
@@ -90,16 +97,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             [unowned self] in
             
             self.finalHigh.state = .hidden
+            self.feedbackHigh.state = .active
         }
         finalModerate.selectedHandler = {
             [unowned self] in
             
             self.finalModerate.state = .hidden
+            self.feedbackModerate.state = .active
         }
         finalMinimal.selectedHandler = {
             [unowned self] in
             
             self.finalMinimal.state = .hidden
+            self.feedbackMinimal.state = .active
         }
         
         
@@ -183,6 +193,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
             self.gameState = .active
+            
+            /* Show final Image */
+            if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
+                self.finalHigh.state = .active
+            }else
+                if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
+                    self.finalMinimal.state = .active
+                }else{
+                    self.finalModerate.state = .active
+            }
         }
         /*Setup answer3b selection handler*/
         answer3b.selectedHandler = {
@@ -194,6 +214,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
             self.gameState = .active
+            
+            /* Show final Image */
+            if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
+                self.finalHigh.state = .active
+            }else
+                if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
+                    self.finalMinimal.state = .active
+                }else{
+                    self.finalModerate.state = .active
+            }
+
+            
         }
         /*Setup answer3c selection handler*/
         answer3c.selectedHandler = {
@@ -205,6 +237,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.answer3b.state = .hidden
             self.answer3c.state = .hidden
             self.gameState = .active
+            
+            /* Show final Image */
+            if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
+                self.finalHigh.state = .active
+            }else
+                if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
+                    self.finalMinimal.state = .active
+                }else{
+                    self.finalModerate.state = .active
+            }
+
         }
         
         
@@ -224,6 +267,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         finalHigh.state = .hidden
         finalModerate.state = .hidden
         finalMinimal.state = .hidden
+        feedbackHigh.state = .hidden
+        feedbackModerate.state = .hidden
+        feedbackMinimal.state = .hidden
         
         /* Reset Score label */
         scoreLabel.text = String(points)
@@ -321,17 +367,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Get obstacle node position, convert node position to scene space */
             let obstaclePosition = obstacleLayer.convert(obstacle.position, to: self)
             
-            /* Check if obstacle has left the scene */
-            if obstaclePosition.x <= 0 {
+            
+            /* Check if obstacle has left the scene or obstacle has been hit */
+            if obstaclePosition.x <= 0 || isHit {
                 
                 /* Remove obstacle node from obstacle layer */
                 obstacle.removeFromParent()
+                isHit = false
             }
             
         }
         
         /* Time to add a new obstacle? */
-        if spawnTimer >= 3 {
+        if spawnTimer >= 1 {
             
             /* Create a new obstacle reference object using our obstacle resource */
             let resourcePath = Bundle.main.path(forResource: "Obstacle", ofType: "sks")
@@ -376,6 +424,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Increment points */
         points -= 1
+        isHit = true
         
         /* Update score label */
         scoreLabel.text = String(points)
@@ -410,8 +459,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Show question three */
             questionThree.state = .active
             answer3a.state = .active
-            answer3b.state = .hidden
-            answer3c.state = .hidden
+            answer3b.state = .active
+            answer3c.state = .active
             
             
             /* Change game state to game paused */
@@ -438,16 +487,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Run action */
             hero.run(heroDeath)
         
-            /* Show final Image */
-            if countHigh > countModerate && countHigh > countMinimal{
-                finalHigh.state = .active
-            }else
-                if countMinimal > countHigh && countMinimal > countModerate{
-                    finalMinimal.state = .active
-                }else{
-                    finalModerate.state = .active
-            }
-
         }
         
         
