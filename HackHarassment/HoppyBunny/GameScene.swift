@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Scene connections */
     var hero: SKSpriteNode!
     var scrollLayer: SKNode!
+    var scrollLayerClouds: SKNode!
     var obstacleLayer: SKNode!
     
     /* UI Connections */
@@ -48,6 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Game constants */
     let fixedDelta: CFTimeInterval = 1.0/60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 160
+    let scrollSpeedClouds: CGFloat = 30
     
     /* Game management */
     var gameState: GameSceneState = .active
@@ -68,6 +70,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Set reference to scroll layer node */
         scrollLayer = self.childNode(withName: "scrollLayer")
+        
+        scrollLayerClouds = self.childNode(withName: "scrollLayerClouds")
         
         /* Set reference to obstacle layer node */
         obstacleLayer = self.childNode(withName: "obstacleLayer")
@@ -413,6 +417,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ground.position = self.convert(newPosition, to: scrollLayer)
             }
         }
+        scrollLayerClouds.position.x -= scrollSpeedClouds * CGFloat(fixedDelta)
+        
+        /* Loop through scroll layer nodes */
+        for clouds in scrollLayer.children as! [SKSpriteNode] {
+            
+            /* Get ground node position, convert node position to scene space */
+            let cloudsPosition = scrollLayerClouds.convert(clouds.position, to: self)
+            
+            /* Check if ground sprite has left the scene */
+            if cloudsPosition.x <= -clouds.size.width / 2 {
+                
+                /* Reposition ground sprite to the second starting position */
+                let newPosition = CGPoint( x: (self.size.width / 2) + clouds.size.width, y: cloudsPosition.y)
+                
+                /* Convert new node position back to scroll layer space */
+                clouds.position = self.convert(newPosition, to: scrollLayerClouds)
+            }
+        }
+
     }
     
     func updateObstacles() {
