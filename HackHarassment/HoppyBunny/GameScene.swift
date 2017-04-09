@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Game constants */
     let fixedDelta: CFTimeInterval = 1.0/60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 160
-    let scrollSpeedClouds: CGFloat = 30
+    let scrollSpeedClouds: CGFloat = 50
     
     /* Game management */
     var gameState: GameSceneState = .active
@@ -461,7 +461,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* Time to add a new obstacle? */
-        if spawnTimer >= 1 {
+        if spawnTimer >= 1.5 {
             
             /* Create a new obstacle reference object using our obstacle resource */
             let resourcePath = Bundle.main.path(forResource: "Obstacle", ofType: "sks")
