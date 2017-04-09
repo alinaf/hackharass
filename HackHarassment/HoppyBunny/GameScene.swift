@@ -99,19 +99,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             [unowned self] in
             
             self.finalHigh.state = .hidden
-            self.feedbackHigh.state = .active
+            self.feedbackHigh.state = .partial
         }
         finalModerate.selectedHandler = {
             [unowned self] in
             
             self.finalModerate.state = .hidden
-            self.feedbackModerate.state = .active
+            self.feedbackModerate.state = .partial
         }
         finalMinimal.selectedHandler = {
             [unowned self] in
             
             self.finalMinimal.state = .hidden
-            self.feedbackMinimal.state = .active
+            self.feedbackMinimal.state = .partial
         }
         
         /* Setup final feedback selection handler */
@@ -119,19 +119,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             [unowned self] in
             
             self.feedbackHigh.state = .hidden
-            self.finalScreen.state = .active
+            self.finalScreen.state = .disabled
         }
         feedbackModerate.selectedHandler = {
             [unowned self] in
             
             self.feedbackModerate.state = .hidden
-            self.finalScreen.state = .active
+            self.finalScreen.state = .disabled
         }
         feedbackMinimal.selectedHandler = {
             [unowned self] in
             
             self.feedbackMinimal.state = .hidden
-            self.finalScreen.state = .active
+            self.finalScreen.state = .disabled
         }
 
         
@@ -218,12 +218,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Show final Image */
             if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
-                self.finalHigh.state = .active
+                self.finalHigh.state = .partial
             }else
                 if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
-                    self.finalMinimal.state = .active
+                    self.finalMinimal.state = .partial
                 }else{
-                    self.finalModerate.state = .active
+                    self.finalModerate.state = .partial
             }
         }
         /*Setup answer3b selection handler*/
@@ -239,12 +239,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Show final Image */
             if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
-                self.finalHigh.state = .active
+                self.finalHigh.state = .partial
             }else
                 if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
-                    self.finalMinimal.state = .active
+                    self.finalMinimal.state = .partial
                 }else{
-                    self.finalModerate.state = .active
+                    self.finalModerate.state = .partial
             }
 
             
@@ -262,12 +262,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Show final Image */
             if self.countHigh > self.countModerate && self.countHigh > self.countMinimal{
-                self.finalHigh.state = .active
+                self.finalHigh.state = .partial
             }else
                 if self.countMinimal > self.countHigh && self.countMinimal > self.countModerate{
-                    self.finalMinimal.state = .active
+                    self.finalMinimal.state = .partial
                 }else{
-                    self.finalModerate.state = .active
+                    self.finalModerate.state = .partial
             }
 
         }

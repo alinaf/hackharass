@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02BCB2781E9A1DD2002B60CC /* MSButtonHack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCB2771E9A1DD2002B60CC /* MSButtonHack.swift */; };
 		5B14B8D61C70946400314555 /* Obstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5B14B8D51C70946400314555 /* Obstacle.sks */; };
 		5B1F919F1C6D386F000B541C /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1F919E1C6D386F000B541C /* CGFloat+Extensions.swift */; };
 		5B28FAE41CD8F9F60041A87E /* sfx_flap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5B28FAE21CD8F9F60041A87E /* sfx_flap.caf */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02BCB2771E9A1DD2002B60CC /* MSButtonHack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonHack.swift; sourceTree = "<group>"; };
 		5B14B8D51C70946400314555 /* Obstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Obstacle.sks; sourceTree = "<group>"; };
 		5B1F919E1C6D386F000B541C /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		5B28FAE21CD8F9F60041A87E /* sfx_flap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_flap.caf; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			children = (
 				5B1F919E1C6D386F000B541C /* CGFloat+Extensions.swift */,
 				5BF052C81C7926C100186955 /* MSButtonNode.swift */,
-				02BCB2771E9A1DD2002B60CC /* MSButtonHack.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -336,7 +333,6 @@
 			files = (
 				5BAFD0631C69328A0088A764 /* GameScene.swift in Sources */,
 				5BAFD0651C69328A0088A764 /* GameViewController.swift in Sources */,
-				02BCB2781E9A1DD2002B60CC /* MSButtonHack.swift in Sources */,
 				5B1F919F1C6D386F000B541C /* CGFloat+Extensions.swift in Sources */,
 				5BAFD05F1C69328A0088A764 /* AppDelegate.swift in Sources */,
 				5BF052C91C7926C100186955 /* MSButtonNode.swift in Sources */,

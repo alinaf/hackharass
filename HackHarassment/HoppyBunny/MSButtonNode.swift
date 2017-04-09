@@ -9,7 +9,7 @@
 import SpriteKit
 
 enum MSButtonNodeState {
-    case active, selected, hidden
+    case active, partial, selected, hidden, disabled
 }
 
 class MSButtonNode: SKSpriteNode {
@@ -24,6 +24,20 @@ class MSButtonNode: SKSpriteNode {
             case .active:
                 /* Enable touch */
                 self.isUserInteractionEnabled = true
+                
+                /* Visible */
+                self.alpha = 1
+                break
+            case .partial:
+                /*Enable touch */
+                self.isUserInteractionEnabled = true
+                
+                /* Visible */
+                self.alpha = 1
+                break
+            case .disabled:
+                /*Disable touch */
+                self.isUserInteractionEnabled = false
                 
                 /* Visible */
                 self.alpha = 1
@@ -55,7 +69,9 @@ class MSButtonNode: SKSpriteNode {
     
     // MARK: - Touch handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        state = .selected
+        if self.state == .active {
+            state = .selected
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
