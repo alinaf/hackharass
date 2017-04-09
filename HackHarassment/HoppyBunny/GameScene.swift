@@ -22,8 +22,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* UI Connections */
     var finalImage: MSButtonNode!
     var questionOne: MSButtonNode!
+    var answer1a: MSButtonNode!
+    var answer1b: MSButtonNode!
+    var answer1c: MSButtonNode!
     var questionTwo: MSButtonNode!
+    var answer2a: MSButtonNode!
+    var answer2b: MSButtonNode!
+    var answer2c: MSButtonNode!
     var questionThree: MSButtonNode!
+    var answer3a: MSButtonNode!
+    var answer3b: MSButtonNode!
+    var answer3c: MSButtonNode!
     var scoreLabel: SKLabelNode!
     
     /* Timers */
@@ -56,9 +65,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Set UI connections */
         finalImage = self.childNode(withName: "finalImage") as! MSButtonNode
         questionOne = self.childNode(withName: "questionOne") as! MSButtonNode
+        answer1a = self.childNode(withName: "answer1a") as! MSButtonNode
+        answer1b = self.childNode(withName: "answer1b") as! MSButtonNode
+        answer1c = self.childNode(withName: "answer1c") as! MSButtonNode
         questionTwo = self.childNode(withName: "questionTwo") as! MSButtonNode
+        answer2a = self.childNode(withName: "answer2a") as! MSButtonNode
+        answer2b = self.childNode(withName: "answer2b") as! MSButtonNode
+        answer2c = self.childNode(withName: "answer2c") as! MSButtonNode
         questionThree = self.childNode(withName: "questionThree") as! MSButtonNode
-        
+        answer3a = self.childNode(withName: "answer3a") as! MSButtonNode
+        answer3b = self.childNode(withName: "answer3b") as! MSButtonNode
+        answer3c = self.childNode(withName: "answer3c") as! MSButtonNode
         scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
         
         /* Setup final image selection handler */
@@ -69,45 +86,108 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.finalImage.state = .hidden
         }
         
-        /*Setup questionOne selection handler*/
-        questionOne.selectedHandler = {
+        
+        /*Setup answer1a selection handler*/
+        answer1a.selectedHandler = {
             [unowned self] in
             
             self.questionOne.state = .hidden
+            self.answer1a.state = .hidden
+            self.answer1b.state = .hidden
+            self.answer1c.state = .hidden
         }
-
+        /*Setup answer1b selection handler*/
+        answer1b.selectedHandler = {
+            [unowned self] in
+            
+            self.questionOne.state = .hidden
+            self.answer1a.state = .hidden
+            self.answer1b.state = .hidden
+            self.answer1c.state = .hidden
+        }
+        /*Setup answer1c selection handler*/
+        answer1c.selectedHandler = {
+            [unowned self] in
+            
+            self.questionOne.state = .hidden
+            self.answer1a.state = .hidden
+            self.answer1b.state = .hidden
+            self.answer1c.state = .hidden
+        }
         
-        /*Setup questionTwo selection handler*/
-        questionTwo.selectedHandler = {
+        
+        /*Setup answer2a selection handler*/
+        answer2a.selectedHandler = {
             [unowned self] in
             
             self.questionTwo.state = .hidden
-            //answerTwoa.state = .active
-            //answerTwob.state = .active
-            //answerTwoc.state = .active
-            
+            self.answer2a.state = .hidden
+            self.answer2b.state = .hidden
+            self.answer2c.state = .hidden
         }
-
+        /*Setup answer2b selection handler*/
+        answer2b.selectedHandler = {
+            [unowned self] in
+            
+            self.questionTwo.state = .hidden
+            self.answer2a.state = .hidden
+            self.answer2b.state = .hidden
+            self.answer2c.state = .hidden
+        }
+        /*Setup answer2c selection handler*/
+        answer2c.selectedHandler = {
+            [unowned self] in
+            
+            self.questionTwo.state = .hidden
+            self.answer2a.state = .hidden
+            self.answer2b.state = .hidden
+            self.answer2c.state = .hidden
+        }
         
-      /*Setup questionThree selection handler*/
-        questionThree.selectedHandler = {
+        
+        /*Setup answer3a selection handler*/
+        answer3a.selectedHandler = {
             [unowned self] in
             
             self.questionThree.state = .hidden
-            //answerThreeOne.state = .hidden
-            //answerThreeTwo.state = .hidden
-            //answerThreeThree.state = .hidden
-            
+            self.answer3a.state = .hidden
+            self.answer3b.state = .hidden
+            self.answer3c.state = .hidden
         }
-
+        /*Setup answer3b selection handler*/
+        answer3b.selectedHandler = {
+            [unowned self] in
+            
+            self.questionThree.state = .hidden
+            self.answer3a.state = .hidden
+            self.answer3b.state = .hidden
+            self.answer3c.state = .hidden
+        }
+        /*Setup answer3c selection handler*/
+        answer3c.selectedHandler = {
+            [unowned self] in
+            
+            self.questionThree.state = .hidden
+            self.answer3a.state = .hidden
+            self.answer3b.state = .hidden
+            self.answer3c.state = .hidden
+        }
+        
         
         /* Hide final Image and questions*/
         finalImage.state = .hidden
         questionOne.state = .hidden
+        answer1a.state = .hidden
+        answer1b.state = .hidden
+        answer1c.state = .hidden
         questionTwo.state = .hidden
+        answer2a.state = .hidden
+        answer2b.state = .hidden
+        answer2c.state = .hidden
         questionThree.state = .hidden
-        
-    
+        answer3a.state = .hidden
+        answer3b.state = .hidden
+        answer3c.state = .hidden
         
         /* Reset Score label */
         scoreLabel.text = String(points)
@@ -263,21 +343,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Update score label */
         scoreLabel.text = String(points)
-      
+        
         //INSERT counter for answers
         
         /* If 1st house hit */
         if points == 2 {
             /* Show question one */
             questionOne.state = .active
-            answerOnea.state = .active
-            answerOneb.state = .active
-            answerOnec.state = .active
+            answer1a.state = .active
+            answer1b.state = .active
+            answer1c.state = .active
         }
         
         if points == 1 {
             /* Show question two */
             questionTwo.state = .active
+            answer2a.state = .active
+            answer2b.state = .active
+            answer2c.state = .active
         }
         
         /* If 3rd house hit */
@@ -285,6 +368,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Show question three */
             questionThree.state = .active
+            answer3a.state = .active
+            answer3b.state = .hidden
+            answer3c.state = .hidden
             
             
             /* Change game state to game over */
@@ -317,15 +403,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Show final Image */
             finalImage.state = .active
         }
-       
-        
-
-        
-
-        
-
         
         
-
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }
