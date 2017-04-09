@@ -20,6 +20,7 @@
 		C74975141E99D991002E9A07 /* Hero.sks in Resources */ = {isa = PBXBuildFile; fileRef = C74975131E99D991002E9A07 /* Hero.sks */; };
 		C74975161E99E822002E9A07 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74975151E99E822002E9A07 /* CGFloat+Extensions.swift */; };
 		C74975181E99F0F3002E9A07 /* Obstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C74975171E99F0F3002E9A07 /* Obstacle.sks */; };
+		C749751A1E99FF5B002E9A07 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74975191E99FF5B002E9A07 /* MSButtonNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C74975131E99D991002E9A07 /* Hero.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Hero.sks; sourceTree = "<group>"; };
 		C74975151E99E822002E9A07 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		C74975171E99F0F3002E9A07 /* Obstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Obstacle.sks; sourceTree = "<group>"; };
+		C74975191E99FF5B002E9A07 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				C74975151E99E822002E9A07 /* CGFloat+Extensions.swift */,
 				C749750E1E99D600002E9A07 /* SFX */,
 				C74974FA1E99BA82002E9A07 /* Actions.sks */,
+				C74975191E99FF5B002E9A07 /* MSButtonNode.swift */,
 				C74974FC1E99BA82002E9A07 /* GameScene.swift */,
 				C74974FE1E99BA82002E9A07 /* GameViewController.swift */,
 				C74975001E99BA82002E9A07 /* Main.storyboard */,
@@ -178,6 +181,7 @@
 				C74974FF1E99BA82002E9A07 /* GameViewController.swift in Sources */,
 				C74975161E99E822002E9A07 /* CGFloat+Extensions.swift in Sources */,
 				C74974F71E99BA82002E9A07 /* AppDelegate.swift in Sources */,
+				C749751A1E99FF5B002E9A07 /* MSButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

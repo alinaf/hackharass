@@ -8,6 +8,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      var spawnTimer: TimeInterval = 0
      let fixedDelta: TimeInterval = 1.0/60.0 /* 60 FPS */
      let scrollSpeed: CGFloat = 160
+     var buttonRestart: MSButtonNode!
+
     
     override func didMove(to view: SKView) {
         /* Set up your scene here */
@@ -20,6 +22,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Set physics contact delegate */
         physicsWorld.contactDelegate = self
+        
+        
+        /* Set UI connections */
+        
+        buttonRestart = self.childNode(withName: "buttonRestart") as! MSButtonNode
+        
+        /* Setup restart button selection handler */
+        buttonRestart.selectedHandler = { [unowned self] in
+            
+            /* Grab reference to our SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            /* Ensure correct aspect mode */
+            scene?.scaleMode = .aspectFill
+            
+            /* Restart game scene */
+            skView?.presentScene(scene)
+        }
+        
+       // buttonRestart.state = .hidden
+        
+
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,6 +64,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Play SFX */
         let flapSFX = SKAction.playSoundFileNamed("sfx_flap", waitForCompletion: false)
         self.run(flapSFX)
+        
+        
+ 
+
+        
+
     }
     
     override func update(_ currentTime: TimeInterval) {
