@@ -38,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var feedbackMinimal: MSButtonNode!
     var feedbackModerate: MSButtonNode!
     var feedbackHigh: MSButtonNode!
+    var finalScreen: MSButtonNode!
     var scoreLabel: SKLabelNode!
     
     /* Timers */
@@ -90,9 +91,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         feedbackHigh = self.childNode(withName: "feedbackHigh") as! MSButtonNode
         feedbackModerate = self.childNode(withName: "feedbackModerate") as! MSButtonNode
         feedbackMinimal = self.childNode(withName: "feedbackMinimal") as! MSButtonNode
+        finalScreen = self.childNode(withName: "finalScreen") as! MSButtonNode
         scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
         
-        /* Setup final image selection handler */
+        /* Setup final score selection handler */
         finalHigh.selectedHandler = {
             [unowned self] in
             
@@ -112,6 +114,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.feedbackMinimal.state = .active
         }
         
+        /* Setup final feedback selection handler */
+        feedbackHigh.selectedHandler = {
+            [unowned self] in
+            
+            self.feedbackHigh.state = .hidden
+            self.finalScreen.state = .active
+        }
+        feedbackModerate.selectedHandler = {
+            [unowned self] in
+            
+            self.feedbackModerate.state = .hidden
+            self.finalScreen.state = .active
+        }
+        feedbackMinimal.selectedHandler = {
+            [unowned self] in
+            
+            self.feedbackMinimal.state = .hidden
+            self.finalScreen.state = .active
+        }
+
         
         /*Setup answer1a selection handler*/
         answer1a.selectedHandler = {
@@ -270,6 +292,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         feedbackHigh.state = .hidden
         feedbackModerate.state = .hidden
         feedbackMinimal.state = .hidden
+        finalScreen.state = .hidden
         
         /* Reset Score label */
         scoreLabel.text = String(points)
@@ -466,26 +489,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             /* Change game state to game paused */
             gameState = .gamePause
             
-            /* Stop any new angular velocity being applied */
-            hero.physicsBody?.allowsRotation = false
-            
-            /* Reset angular velocity */
-            hero.physicsBody?.angularVelocity = 0
-            
-            /* Stop hero flapping animation */
-            hero.removeAllActions()
-            
-            /* Create our hero death action */
-            let heroDeath = SKAction.run({
-                
-                /* Put our hero face down in the dirt */
-                self.hero.zRotation = CGFloat(-90).degreesToRadians()
-                /* Stop hero from colliding with anything else */
-                self.hero.physicsBody?.collisionBitMask = 0
-            })
-            
-            /* Run action */
-            hero.run(heroDeath)
+
         
         }
         
